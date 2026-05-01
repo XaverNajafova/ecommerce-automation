@@ -1,4 +1,4 @@
-# 🧪 Web Shop UI Test Automation Framework
+# 🧪 E-commerce UI Test Automation Framework
 
 A scalable and maintainable **UI Test Automation Framework** built using **Java, Selenium WebDriver, and TestNG**.
 The framework follows the **Page Object Model (POM)** design pattern and includes reporting with **ExtentReports**.
