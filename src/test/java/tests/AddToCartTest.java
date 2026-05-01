@@ -11,6 +11,9 @@ public class AddToCartTest extends BaseTest {
     @Test
     public void addToCartTest() {
 
+
+
+
         LoginPage loginPage = new LoginPage(driver);
         ProductsPage productsPage = new ProductsPage(driver);
 
