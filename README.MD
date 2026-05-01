@@ -61,11 +61,16 @@ Web_Shop/
 
 ## 🧪 Test Coverage
 
-Currently automated scenarios:
+Automation currently includes:
 
-* User login functionality validation
+✔ Login functionality validation
 
-> The framework is designed to be easily extendable (e.g., Cart, Checkout, Search scenarios).
+Framework expansion in progress:
+
+➜ Add to Cart
+➜ Cart validation
+➜ Checkout flow
+➜ Search functionality
 
 ---
 

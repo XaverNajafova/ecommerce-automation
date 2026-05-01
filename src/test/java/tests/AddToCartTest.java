@@ -1,33 +1,31 @@
 package tests;
 
-import config.ConfigReader;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import org.openqa.selenium.By;
-
+import pages.ProductsPage;
+import base.BaseTest;
 
 public class AddToCartTest extends BaseTest {
 
     @Test
-    public void addProductToCart() {
+    public void addToCartTest() {
 
         LoginPage loginPage = new LoginPage(driver);
-        ConfigReader config = new ConfigReader();
+        ProductsPage productsPage = new ProductsPage(driver);
 
-        // login
+        // 1. login
         loginPage.openLoginPage();
-        loginPage.login(config.getUsername(), config.getPassword());
+        loginPage.login("test@example.com", "123456");
 
-        // product add to cart
-        driver.findElement(By.xpath("(//input[@value='Add to cart'])[1]")).click();
+        // 2. product page
+        driver.get("https://demowebshop.tricentis.com/books");
 
-        // go to cart
-        driver.findElement(By.className("ico-cart")).click();
+        // 3. add to cart
+        productsPage.addFirstProductToCart();
+        productsPage.openCart();
 
-        // verification
-        boolean isProductVisible = driver.getPageSource().contains("Build your own computer");
-        Assert.assertTrue(isProductVisible);
+        // 4. assertion
+        Assert.assertTrue(driver.getPageSource().contains("Shopping cart"));
     }
 }

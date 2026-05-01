@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import config.ConfigReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
