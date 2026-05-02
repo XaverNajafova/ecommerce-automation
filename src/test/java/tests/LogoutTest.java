@@ -6,21 +6,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-public class LoginTest extends BaseTest {
+public class LogoutTest extends BaseTest {
 
     @Test
-    public void loginTest() {
+    public void logoutTest() {
 
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.openLoginPage();
-
-        // ⚠️ BURDA REAL USER OLMALIDIR
         loginPage.login("najafovakhavar@gmail.com", "123456");
 
-        // ✔ REAL CHECK
-        boolean isLogoutVisible = driver.findElement(By.className("ico-logout")).isDisplayed();
+        driver.findElement(By.className("ico-logout")).click();
 
-        Assert.assertTrue(isLogoutVisible, "Login failed!");
+        Assert.assertTrue(driver.findElement(By.className("ico-login")).isDisplayed());
     }
 }

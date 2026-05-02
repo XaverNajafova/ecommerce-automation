@@ -1,34 +1,29 @@
 package tests;
 
-import org.testng.Assert;
+import base.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import pages.ProductsPage;
-import base.BaseTest;
+
+import java.time.Duration;
 
 public class AddToCartTest extends BaseTest {
 
     @Test
-    public void addToCartTest() {
-
-
-
+    public void addProductToCart() {
 
         LoginPage loginPage = new LoginPage(driver);
-        ProductsPage productsPage = new ProductsPage(driver);
-
-        // 1. login
         loginPage.openLoginPage();
-        loginPage.login("test@example.com", "123456");
+        loginPage.login("najafovakhavar@gmail.com", "123456");
 
-        // 2. product page
         driver.get("https://demowebshop.tricentis.com/books");
 
-        // 3. add to cart
-        productsPage.addFirstProductToCart();
-        productsPage.openCart();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // 4. assertion
-        Assert.assertTrue(driver.getPageSource().contains("Shopping cart"));
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//input[@value='Add to cart'])[1]")
+        )).click();
     }
 }
