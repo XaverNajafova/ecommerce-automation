@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import utils.WaitUtils;
 
 public class LoginPage {
 
@@ -13,22 +12,18 @@ public class LoginPage {
     }
 
     By loginLink = By.className("ico-login");
-    By email = By.id("Email");
-    By password = By.id("Password");
-    By loginBtn = By.cssSelector("input[value='Log in']");
+    By emailInput = By.id("Email");
+    By passwordInput = By.id("Password");
+    By loginButton = By.xpath("//input[@value='Log in']");
 
     public void openLoginPage() {
-
-        WaitUtils.getWait(driver).until(
-                d -> d.findElement(loginLink).isDisplayed()
-        );
-
+        driver.get("https://demowebshop.tricentis.com/");
         driver.findElement(loginLink).click();
     }
 
-    public void login(String user, String pass) {
-        driver.findElement(email).sendKeys(user);
-        driver.findElement(password).sendKeys(pass);
-        driver.findElement(loginBtn).click();
+    public void login(String email, String password) {
+        driver.findElement(emailInput).sendKeys(email);
+        driver.findElement(passwordInput).sendKeys(password);
+        driver.findElement(loginButton).click();
     }
 }

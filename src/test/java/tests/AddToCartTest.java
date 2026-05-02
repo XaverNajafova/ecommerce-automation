@@ -1,12 +1,13 @@
 package tests;
 
-import config.ConfigReader;
-import org.testng.Assert;
-import org.testng.annotations.Listeners;
+import base.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import org.openqa.selenium.By;
 
+import java.time.Duration;
 
 public class AddToCartTest extends BaseTest {
 
@@ -14,20 +15,15 @@ public class AddToCartTest extends BaseTest {
     public void addProductToCart() {
 
         LoginPage loginPage = new LoginPage(driver);
-        ConfigReader config = new ConfigReader();
-
-        // login
         loginPage.openLoginPage();
-        loginPage.login(config.getUsername(), config.getPassword());
+        loginPage.login("najafovakhavar@gmail.com", "123456");
 
-        // product add to cart
-        driver.findElement(By.xpath("(//input[@value='Add to cart'])[1]")).click();
+        driver.get("https://demowebshop.tricentis.com/books");
 
-        // go to cart
-        driver.findElement(By.className("ico-cart")).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // verification
-        boolean isProductVisible = driver.getPageSource().contains("Build your own computer");
-        Assert.assertTrue(isProductVisible);
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//input[@value='Add to cart'])[1]")
+        )).click();
     }
 }

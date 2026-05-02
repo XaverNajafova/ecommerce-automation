@@ -1,20 +1,20 @@
 # 🧪 Web Shop UI Test Automation Framework
 
-A scalable and maintainable **UI Test Automation Framework** built using **Java, Selenium WebDriver, and TestNG**.
+A scalable and maintainable **UI Test Automation Framework** built using **Java, Selenium WebDriver, and TestNG**.  
 The framework follows the **Page Object Model (POM)** design pattern and includes reporting with **ExtentReports**.
 
-This project demonstrates hands-on experience in designing automation frameworks for real-world web applications.
+This project demonstrates practical skills in building real-world automation frameworks.
 
 ---
 
 ## 🚀 Tech Stack
 
-* Java 17
-* Selenium WebDriver
-* TestNG
-* Maven
-* ExtentReports
-* Page Object Model (POM)
+- Java 17
+- Selenium WebDriver
+- TestNG
+- Maven
+- ExtentReports
+- Page Object Model (POM)
 
 ---
 
@@ -26,104 +26,99 @@ https://demowebshop.tricentis.com
 
 ## 🏗️ Framework Architecture
 
-The framework is designed with reusability, scalability, and maintainability in mind:
+The framework is designed for **scalability, maintainability, and reusability**.
 
-* **pages** → Page Object classes encapsulating UI elements and actions
-* **tests** → Test scenarios and validations
-* **base** → WebDriver setup and teardown logic
-* **config** → Centralized configuration management
-* **utils** → Utility classes (reporting, helpers)
-* **listeners** → TestNG listeners for reporting and screenshots
+### Main Layers:
+
+- **pages** → Page Object classes (UI elements + actions)
+- **tests** → Test cases and validations
+- **base** → WebDriver setup and teardown
+- **config** → Configuration management (properties)
+- **utils** → Utility classes (ExtentReports, helpers)
 
 ---
 
 ## 📁 Project Structure
-
-```
 Web_Shop/
 │
 ├── src
-│   ├── main/java
-│   │   ├── pages        # Page Object classes
-│   │   ├── config       # Configuration management
-│   │   └── utils        # Utilities (ExtentReports, helpers)
-│   │
-│   ├── test/java
-│       ├── base         # BaseTest (setup & teardown)
-│       ├── tests        # Test cases
-│       └── listeners    # TestNG listeners (reporting, screenshots)
+│ ├── main/java
+│ │ ├── pages # Page Object classes
+│ │ ├── config # Config reader
+│ │ └── utils # ExtentReports manager
+│ │
+│ ├── test/java
+│ ├── base # BaseTest (setup & teardown)
+│ ├── tests # Test cases
+│ └── listeners # TestNG listeners (optional)
 │
-├── test-output          # Generated test reports
-├── pom.xml              # Maven dependencies & build configuration
-```
+├── test-output # Test reports (TestNG)
+├── pom.xml # Maven dependencies
+
 
 ---
 
 ## 🧪 Test Coverage
 
-Currently automated scenarios:
+Currently implemented test scenarios:
 
-* User login functionality validation
+- User Register Test
+- User Login Test
+- User Logout Test
+- Add to Cart Test
+- Remove From Cart Test
 
-> The framework is designed to be easily extendable (e.g., Cart, Checkout, Search scenarios).
+> Framework is structured to easily add more modules like Search, Wishlist, etc.
 
 ---
 
 ## ⚙️ Key Features
 
-* Page Object Model (POM) for clean and maintainable test design
-* Centralized configuration using `config.properties`
-* Reusable BaseTest class for WebDriver management
-* Explicit waits for stable test execution
-* ExtentReports integration for detailed HTML reporting
-* Modular and scalable project structure
+- Page Object Model (POM) design pattern
+- Reusable BaseTest with WebDriver setup & teardown
+- Centralized configuration management
+- Explicit waits for stable automation
+- ExtentReports HTML reporting integration
+- Clean and scalable folder structure
+
+---
+
+## 📊 Reporting (ExtentReports)
+
+After execution, an HTML report is generated via **ExtentReports**.
+
+### Report includes:
+
+- Test status (Pass / Fail / Skip)
+- Step-by-step logs
+- Execution time
+- Error messages (if any)
 
 ---
 
 ## ▶️ How to Run Tests
 
-### Option 1 — IntelliJ IDEA
+### Option 1: IntelliJ IDEA
+- Open project as Maven project
+- Run test classes from `tests` package
 
-* Import project as a Maven project
-* Run test classes (e.g., `LoginTest.java`)
-
-### Option 2 — Maven
-
-```bash
+### Option 2: Maven CLI
+ ```bash
 mvn clean test
 ```
 
----
-
-## 📊 Test Reporting
-
-After execution, an **ExtentReports HTML report** is generated.
-
-Report includes:
-
-* Test execution status (Pass/Fail)
-* Step-level logs
-* Execution time details
-
----
-
-## 🔧 Future Improvements
-
-* Add more test scenarios (Cart, Checkout, Search)
-* Data-driven testing implementation
-* Parallel test execution
-* CI/CD integration (GitHub Actions / Jenkins)
-* Cross-browser testing
-
----
+🔧 Future Improvements
+Add more test modules (Search, Wishlist)
+Data-driven testing (Excel / JSON)
+Parallel test execution
+CI/CD integration (GitHub Actions / Jenkins)
+Cross-browser testing support
 
 ## 👩‍💻 Author
 
-QA Automation Engineer
-(Java | Selenium | TestNG | POM)
+QA Automation Engineer  
+(Manual & Automation Testing | Selenium | Java | TestNG | POM | Postman API Testing)
 
----
 
-## 📌 Note
 
-This project is developed for **learning and portfolio purposes**, demonstrating practical skills in automation framework design.
+

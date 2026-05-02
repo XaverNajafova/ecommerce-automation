@@ -5,9 +5,9 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtentManager {
 
-    public static ExtentReports extent;
+    private static ExtentReports extent;
 
-    public static ExtentReports getExtentReports() {
+    public static ExtentReports getReport() {
 
         if (extent == null) {
 
@@ -15,9 +15,6 @@ public class ExtentManager {
 
             extent = new ExtentReports();
             extent.attachReporter(spark);
-
-            extent.setSystemInfo("Project", "Demo Web Shop");
-            extent.setSystemInfo("Tester", "QA Engineer");
         }
 
         return extent;
