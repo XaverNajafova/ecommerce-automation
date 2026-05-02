@@ -107,7 +107,7 @@ Run tests from:
 ### Maven CLI
 mvn clean test
 
-🔮 Future Improvements
+## 🔮 Future Improvements
 
 Data-driven testing (JSON / Excel)
 Parallel execution
@@ -115,7 +115,7 @@ CI/CD integration (GitHub Actions / Jenkins)
 Advanced API validation (schema + contract testing)
 Cross-browser testing
 
- 👩‍💻 Author
+ ## 👩‍💻 Author
 
 QA Engineer
 Manual | Selenium | Java | TestNG | POM | API Testing (Rest Assured)
