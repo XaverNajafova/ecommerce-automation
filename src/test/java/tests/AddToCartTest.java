@@ -10,7 +10,7 @@ import pages.LoginPage;
 import java.time.Duration;
 
 public class AddToCartTest extends BaseTest {
-
+ // vcb
     @Test
     public void addProductToCart() {
 
