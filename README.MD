@@ -107,7 +107,7 @@ Run tests from:
 ### Maven CLI
 mvn clean test
 
-## 🔮 Future Improvements 
+## 🔮 Future Improvements
 
 Data-driven testing (JSON / Excel)
 Parallel execution
