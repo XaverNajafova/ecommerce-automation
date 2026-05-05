@@ -24,7 +24,7 @@
             <version>4.20.0</version>
         </dependency>
 
-        <!-- TestNG (ONLY ONCE) -->
+        <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -70,5 +70,46 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+
+            <!-- TestNG Runner (CI CORE) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
+
+                <configuration>
+
+                    <!-- TestNG Suite -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+
+                    <!-- Browser param for Jenkins -->
+                    <systemPropertyVariables>
+                        <browser>chrome</browser>
+                    </systemPropertyVariables>
+
+                    <!-- Stability -->
+                    <skipTests>false</skipTests>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
