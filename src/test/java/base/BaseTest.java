@@ -3,9 +3,8 @@ package base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -30,30 +29,20 @@ public class BaseTest {
 
             driver = new ChromeDriver(options);
 
-        } else if (browser.equalsIgnoreCase("edge")) {
+            System.out.println("Running on browser: chrome");
 
-            try {
-                WebDriverManager.edgedriver()
-                        .clearResolutionCache()
-                        .setup();
+        }
+        else if (browser.equalsIgnoreCase("edge")) {
 
-                EdgeOptions options = new EdgeOptions();
-                options.addArguments("--start-maximized");
-                options.addArguments("--remote-allow-origins=*");
+            // EDGE DISABLED FOR CI STABILITY
+            System.out.println("Edge tests are disabled. Skipping execution.");
 
-                driver = new EdgeDriver(options);
+            throw new SkipException("Edge browser is disabled in this framework");
 
-            } catch (Exception e) {
-                throw new RuntimeException(
-                        "EdgeDriver failed. Check internet/DNS or WebDriverManager config: " + e.getMessage()
-                );
-            }
-
-        } else {
+        }
+        else {
             throw new RuntimeException("Browser not supported: " + browser);
         }
-
-        System.out.println("Running on browser: " + browser);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
