@@ -1,149 +1,92 @@
 # 🧪 Web Shop Test Automation Framework
 
-A **UI + API Test Automation Framework** built using **Java, Selenium WebDriver, TestNG, and Rest Assured**, following the **Page Object Model (POM)** design pattern.
+A UI + API Test Automation Framework built using Java, Selenium WebDriver, TestNG, Rest Assured, Maven, following Page Object Model (POM) design pattern.
 
-This project demonstrates real-world automation skills covering both **frontend (UI)** and **backend (API)** testing, along with **CI/CD integration using Jenkins**.
+This project demonstrates real-world QA Automation skills including UI testing, API testing, parallel execution, reporting, and CI/CD integration with Jenkins.
 
 ---
 
 ## 🚀 Tech Stack
-
-* Java 17
-* Selenium WebDriver
-* TestNG
-* Rest Assured (API Testing)
-* Maven
-* ExtentReports
-* Jenkins (CI/CD)
+Java 21 | Selenium WebDriver | TestNG | Rest Assured | Maven | Jenkins | ExtentReports
 
 ---
 
 ## 🌐 Application Under Test
-
-**UI:**
-https://demowebshop.tricentis.com
-
-**API:**
-https://reqres.in
+UI: https://demowebshop.tricentis.com  
+API: https://reqres.in
 
 ---
 
-## 🏗️ Framework Design
-
-* Page Object Model (POM) for UI automation
-* Separate API layer using Rest Assured
-* Reusable **BaseTest** for setup and teardown
-* Centralized configuration management
-* Extensible and maintainable architecture
-* Integrated reporting with ExtentReports
-
----
-
-## 🔄 CI/CD Integration
-
-This project is integrated with **Jenkins** for continuous integration.
-
-* Automated test execution via pipeline
-* GitHub repository integration
-* Scalable for future CI/CD improvements
-
-![Jenkins Pipeline](jenkins.png)
-
----
-
-## 📁 Project Structure
-
-```
-src
-├── main/java
-│   ├── pages        # UI Page Objects
-│   ├── api          # API client classes
-│   ├── config       # Config reader
-│   └── utils        # Helpers & reporting
+## 🏗️ Framework Structure
+WebShop-Automation-Framework
 │
-├── test/java
-│   ├── ui_tests     # UI test cases
-│   └── api_tests    # API test cases
+├── src
+│   ├── main/java
+│   │   ├── pages → Page Object Model (UI pages)
+│   │   ├── api → API client classes
+│   │   ├── config → Configuration reader
+│   │   └── utils → Utilities (drivers, helpers, reports)
+│   │
+│   └── test/java
+│       ├── ui_tests → UI test cases
+│       └── api_tests → API test cases
 │
-└── base             # BaseTest (setup/teardown)
-
-test-output           # Test reports
-pom.xml               # Dependencies
-```
-
----
-
-## 🧪 Test Coverage
-
-### UI Tests
-
-* User Registration
-* Login / Logout
-* Add to Cart
-* Remove from Cart
-
-### API Tests
-
-* GET user details
-* POST login / authentication
-* Validate response status codes
-* Basic response validation
+├── base
+│   └── BaseTest → Setup & teardown
+│
+├── test-output → Reports (Extent/TestNG)
+├── pom.xml → Maven dependencies
+└── README.md
 
 ---
 
-## ⚙️ Key Features
+## ⚙️ Features
+- UI + API automation framework
+- Page Object Model (POM)
+- Parallel execution (Chrome & Edge)
+- Maven build management
+- ExtentReports HTML reporting
+- Jenkins CI/CD integration
+- Stable execution with error handling
 
-* Combined **UI + API automation framework**
-* Page Object Model (POM) architecture
-* Reusable test setup (BaseTest)
-* REST API automation using Rest Assured
-* HTML reporting with ExtentReports
-* CI/CD integration with Jenkins
-* Scalable and maintainable design
+---
+
+## 🔄 CI/CD Pipeline (Jenkins)
+GitHub Push → Jenkins Trigger → Maven Build → Parallel Test Execution → Report Generation
+
+✔ Successfully executed in Jenkins  
+✔ GitHub integrated  
+✔ Parallel execution enabled  
+✔ Automated test runs on every commit
 
 ---
 
 ## 📊 Reporting
-
-ExtentReports generates detailed HTML reports including:
-
-* Test status (Pass / Fail / Skip)
-* API request & response logs
-* UI step logs
-* Execution time
-* Error details with stack trace
+- ExtentReports HTML report
+- Test status (Pass / Fail / Skip)
+- Execution logs
+- Jenkins HTML Publisher Plugin
 
 ---
 
-## ▶️ How to Run Tests
+## 📸 Screenshots
+Jenkins Success → jenkins_success.png  
+Parallel Execution → jenkins_parallel.png  
+Extent Report → extent_report.png  
+IntelliJ Project → intellij.png
 
-### IntelliJ IDEA
+---
 
-Run tests from:
-
-* `ui_tests` package
-* `api_tests` package
-
-### Maven CLI
-
-```
+## ▶️ Run Tests
 mvn clean test
-```
 
 ---
 
 ## 🔮 Future Improvements
-
-* Data-driven testing (JSON / Excel)
-* Parallel test execution
-* Cross-browser testing
-* Advanced API validation (schema & contract testing)
-* Docker integration
-* Enhanced CI/CD pipelines
+- Data-driven testing (Excel / JSON)
+- API contract testing
 
 ---
 
 ## 👩‍💻 Author
-
-**QA Automation Engineer**
-Manual Testing | Selenium | Java | TestNG | POM | API Testing (Rest Assured) | Jenkins
+QA Automation Engineer | Java | Selenium | TestNG | Rest Assured | Jenkins CI/CD
