@@ -11,7 +11,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void loginTest() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.openLoginPage();
 
@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
         loginPage.login("najafovakhavar@gmail.com", "123456");
 
         // ✔ REAL CHECK
-        boolean isLogoutVisible = driver.findElement(By.className("ico-logout")).isDisplayed();
+        boolean isLogoutVisible = getDriver().findElement(By.className("ico-logout")).isDisplayed();
 
         Assert.assertTrue(isLogoutVisible, "Login failed!");
     }

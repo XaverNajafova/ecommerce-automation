@@ -14,13 +14,13 @@ public class AddToCartTest extends BaseTest {
     @Test
     public void addProductToCart() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage( getDriver());
         loginPage.openLoginPage();
         loginPage.login("najafovakhavar@gmail.com", "123456");
 
-        driver.get("https://demowebshop.tricentis.com/books");
+        getDriver().get("https://demowebshop.tricentis.com/books");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait( getDriver(), Duration.ofSeconds(10));
 
         wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("(//input[@value='Add to cart'])[1]")

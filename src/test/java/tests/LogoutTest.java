@@ -11,12 +11,12 @@ public class LogoutTest extends BaseTest {
     @Test
     public void logoutTest() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.openLoginPage();
         loginPage.login("najafovakhavar@gmail.com", "123456");
 
-        driver.findElement(By.className("ico-logout")).click();
+        getDriver().findElement(By.className("ico-logout")).click();
 
-        Assert.assertTrue(driver.findElement(By.className("ico-login")).isDisplayed());
+        Assert.assertTrue(getDriver().findElement(By.className("ico-login")).isDisplayed());
     }
 }

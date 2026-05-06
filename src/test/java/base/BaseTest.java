@@ -1,12 +1,11 @@
 package base;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.ITestResult;
 import org.testng.SkipException;
 import org.testng.annotations.*;
@@ -19,10 +18,22 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected WebDriver driver;
+    // Thread-safe WebDriver
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    // Thread-safe ExtentTest
+    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     protected static ExtentReports extent;
-    protected static ExtentTest test;
+
+    // Getter methods
+    public WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public ExtentTest getTest() {
+        return test.get();
+    }
 
     @BeforeSuite
     public void beforeSuite() {
@@ -30,11 +41,11 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void setUp(Method method) {
+    @Parameters("browser")
+    public void setUp(@Optional("chrome") String browser, Method method) {
 
-        test = extent.createTest(method.getName());
-
-        String browser = System.getProperty("browser", "chrome");
+        // Create test for report (thread-safe)
+        test.set(extent.createTest(method.getName()));
 
         if (browser.equalsIgnoreCase("chrome")) {
 
@@ -44,22 +55,26 @@ public class BaseTest {
             options.addArguments("--start-maximized");
             options.addArguments("--remote-allow-origins=*");
 
-            driver = new ChromeDriver(options);
+            driver.set(new ChromeDriver(options));
 
-            test.log(Status.INFO, "Browser started: Chrome");
+            getTest().log(Status.INFO, "Browser started: Chrome");
 
-        }
-        else if (browser.equalsIgnoreCase("edge")) {
+        } else if (browser.equalsIgnoreCase("edge")) {
 
-            test.log(Status.SKIP, "Edge browser disabled in CI");
-            throw new SkipException("Edge browser is disabled");
+            WebDriverManager.edgedriver().setup();
 
-        }
-        else {
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("--start-maximized");
+
+            driver.set(new EdgeDriver(options));
+
+            getTest().log(Status.INFO, "Browser started: Edge");
+
+        } else {
             throw new RuntimeException("Browser not supported: " + browser);
         }
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterMethod
@@ -67,24 +82,24 @@ public class BaseTest {
 
         if (result.getStatus() == ITestResult.FAILURE) {
 
-            String path = ScreenshotUtil.takeScreenshot(driver, result.getName());
+            String path = ScreenshotUtil.takeScreenshot(getDriver(), result.getName());
 
-            test.log(Status.FAIL, "Test Failed: " + result.getName());
-            test.addScreenCaptureFromPath(path);
+            getTest().fail("Test Failed: " + result.getName());
+            getTest().addScreenCaptureFromPath(path);
 
-        }
-        else if (result.getStatus() == ITestResult.SUCCESS) {
+        } else if (result.getStatus() == ITestResult.SUCCESS) {
 
-            test.log(Status.PASS, "Test Passed: " + result.getName());
+            getTest().pass("Test Passed: " + result.getName());
 
-        }
-        else if (result.getStatus() == ITestResult.SKIP) {
+        } else if (result.getStatus() == ITestResult.SKIP) {
 
-            test.log(Status.SKIP, "Test Skipped: " + result.getName());
+            getTest().skip("Test Skipped: " + result.getName());
         }
 
-        if (driver != null) {
-            driver.quit();
+        // Quit driver safely
+        if (getDriver() != null) {
+            getDriver().quit();
+            driver.remove(); // IMPORTANT for parallel
         }
     }
 

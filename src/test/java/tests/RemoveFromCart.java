@@ -11,19 +11,19 @@ public class RemoveFromCart extends BaseTest {
     @Test
     public void removeFromCartTest() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage( getDriver());
         loginPage.openLoginPage();
         loginPage.login("najafovakhavar@gmail.com", "123456");
 
-        driver.get("https://demowebshop.tricentis.com/books");
+        getDriver().get("https://demowebshop.tricentis.com/books");
 
-        driver.findElement(By.cssSelector("input[value='Add to cart']")).click();
+        getDriver().findElement(By.cssSelector("input[value='Add to cart']")).click();
 
-        driver.findElement(By.className("cart-label")).click();
+        getDriver().findElement(By.className("cart-label")).click();
 
-        driver.findElement(By.name("removefromcart")).click();
-        driver.findElement(By.name("updatecart")).click();
+        getDriver().findElement(By.name("removefromcart")).click();
+        getDriver().findElement(By.name("updatecart")).click();
 
-        Assert.assertTrue(driver.getPageSource().contains("Your Shopping Cart is empty"));
+        Assert.assertTrue( getDriver().getPageSource().contains("Your Shopping Cart is empty"));
     }
 }
