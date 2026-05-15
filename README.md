@@ -1,8 +1,8 @@
 # 🧪 Web Shop Test Automation Framework
 
-A UI + API Test Automation Framework built using Java, Selenium WebDriver, TestNG, Rest Assured, Maven, following Page Object Model (POM) design pattern.
+Automation testing framework designed for scalable UI and API regression testing using Selenium WebDriver, TestNG, REST Assured, and Jenkins CI integration
 
-This project demonstrates real-world QA Automation skills including UI testing, API testing, parallel execution, reporting, and CI/CD integration with Jenkins.
+This project was built to simulate a real-world scalable e-commerce automation framework with UI, API, reporting, and CI/CD integration.
 
 ---
 
